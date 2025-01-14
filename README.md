@@ -25,7 +25,7 @@ Install Playwright for Python:
 
 2) A browser instance will open. Proceed with the login on Everand and make sure to solve the captcha (if any). This step is required only for the first run. If you later want to login with another account, delete the session.json file and re-run the script. You may also have to do 2FA for each run.
 
-3) The script will scrape your saved books from Everand
+3) The script will grab the list of books in your saved list on Everand. Why not go ahead and save a load more stuff you always fancied reading before running this, because fuck Everand.
 
 3) The script will start downloading each Everand ebook type book - scribd stuff and PDFs are not supported, but all Everand ebooks including sheet music should work fine.
 

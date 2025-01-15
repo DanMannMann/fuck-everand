@@ -39,8 +39,20 @@ with sync_playwright() as playwright:
 	page = context.new_page()
 	page.goto('https://www.everand.com/saved')
 	page.locator('li.auto__shared_react_cells_saved_book').nth(0).wait_for(state='attached')
+
+	# scroll to the bottom of the infinite-scroll saved page
+	curr_height = -1
+	prev_height = -2
+	while curr_height != prev_height:
+		prev_height = page.evaluate('(window.innerHeight + window.scrollY)')
+		page.mouse.wheel(0, 15000)
+		time.sleep(2)
+		curr_height = page.evaluate('(window.innerHeight + window.scrollY)')
+
 	for item in page.locator('li.auto__shared_react_cells_saved_book>div>a').all():
 		books.append(item.get_attribute("href"))
+
+	print(f"{len(books)} books found in saved list")
 
 	for book_url in books:
 		if (book_url.startswith("https://www.scribd.com")):
